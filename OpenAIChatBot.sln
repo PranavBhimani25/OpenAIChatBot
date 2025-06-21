@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36109.1 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OpenAIChatBot", "OpenAIChatBot\OpenAIChatBot.csproj", "{88DA9A36-AF85-4C34-816C-FF90523BF16A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{88DA9A36-AF85-4C34-816C-FF90523BF16A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{88DA9A36-AF85-4C34-816C-FF90523BF16A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{88DA9A36-AF85-4C34-816C-FF90523BF16A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{88DA9A36-AF85-4C34-816C-FF90523BF16A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {53D3DE49-B15C-4D3C-BAEC-572AD390AED1}
+	EndGlobalSection
+EndGlobal

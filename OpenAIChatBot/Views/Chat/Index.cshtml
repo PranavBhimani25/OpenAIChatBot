@@ -1,0 +1,173 @@
+﻿@{
+    Layout = "_ChatLayout";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Chat Bot - Mistral 7B</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="~/css/chatbot.css">
+    <style>
+        /* .chat-container {
+            width: 97%;
+            height: 94vh;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            animation: slideUp 0.6s ease-out;
+        } */
+    </style>
+</head>
+<body>
+    <div class="chat-container ">
+        <div class="chat-header">
+            <h1><i class="fas fa-robot"></i> AI Chat Bot</h1>
+            <p>Powered by Mistral 7B-Instruct</p>
+            <div class="bot-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+        </div>
+
+        <div class="chat-messages" id="chatMessages">
+            <div class="welcome-message">
+                <i class="fas fa-comments" style="font-size: 2em; color: #667eea; margin-bottom: 10px;"></i>
+                <p>Welcome! Start a conversation with the AI assistant.</p>
+            </div>
+        </div>
+
+        <div class="typing-indicator" id="typingIndicator">
+            <div class="typing-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+
+        <div class="chat-input-container">
+            <div class="chat-input-wrapper">
+                <textarea 
+                    id="messageInput" 
+                    class="chat-input" 
+                    placeholder="Type your message here..." 
+                    rows="1"></textarea>
+                <button id="sendButton" class="send-button">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script>
+        $(document).ready(function() {
+            const chatMessages = $('#chatMessages');
+            const messageInput = $('#messageInput');
+            const sendButton = $('#sendButton');
+            const typingIndicator = $('#typingIndicator');
+
+            // Auto-resize textarea
+            messageInput.on('input', function() {
+                this.style.height = 'auto';
+                this.style.height = Math.min(100, this.scrollHeight) + 'px';
+            });
+
+            // Send message on Enter (but allow Shift+Enter for new line)
+            messageInput.on('keydown', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+
+            sendButton.on('click', sendMessage);
+
+            function sendMessage() {
+                const message = messageInput.val().trim();
+                if (!message || sendButton.prop('disabled')) return;
+
+                // Clear welcome message if it exists
+                $('.welcome-message').remove();
+
+                // Add user message
+                addMessage(message, 'user');
+                messageInput.val('').css('height', 'auto');
+
+                // Disable input and show typing indicator
+                sendButton.prop('disabled', true);
+                messageInput.prop('disabled', true);
+                showTypingIndicator();
+
+                // Send to server
+                $.ajax({
+                    url: '/Chat/SendMessage',
+                    method: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify({ message: message }),
+                    success: function(response) {
+                        hideTypingIndicator();
+                        
+                        if (response.error) {
+                            showError(response.error);
+                        } else {
+                            addMessage(response.message, 'bot');
+                        }
+                    },
+                    error: function(xhr, status, error) {
+                        hideTypingIndicator();
+                        showError('Connection error. Please try again.');
+                    },
+                    complete: function() {
+                        sendButton.prop('disabled', false);
+                        messageInput.prop('disabled', false);
+                        messageInput.focus();
+                    }
+                });
+            }
+
+            function addMessage(content, sender) {
+                const messageClass = sender === 'user' ? 'user-message' : 'bot-message';
+                const time = new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                const messageHtml = `
+                    <div class="message ${messageClass}">
+                        <div>${content.replace(/\n/g, '<br>')}</div>
+                        <div class="message-time">${time}</div>
+                    </div>
+                `;
+                
+                chatMessages.append(messageHtml);
+                scrollToBottom();
+            }
+
+            function showTypingIndicator() {
+                typingIndicator.show();
+                scrollToBottom();
+            }
+
+            function hideTypingIndicator() {
+                typingIndicator.hide();
+            }
+
+            function showError(message) {
+                const errorHtml = `<div class="error-message">${message}</div>`;
+                chatMessages.append(errorHtml);
+                scrollToBottom();
+            }
+
+            function scrollToBottom() {
+                chatMessages.scrollTop(chatMessages[0].scrollHeight);
+            }
+
+            // Focus on input when page loads
+            messageInput.focus();
+        });
+    </script>
+</body>
+</html>

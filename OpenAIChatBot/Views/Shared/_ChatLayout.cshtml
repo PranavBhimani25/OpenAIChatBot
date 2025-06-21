@@ -1,0 +1,208 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - AI Chat Bot</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🤖</text></svg>">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" type="text/css" href="~/css/Layoutcss.css" />
+
+    @await RenderSectionAsync("Styles", required: false)
+</head>
+<body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+                <i class="fas fa-robot"></i>
+                AI Chat Bot
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="/">
+                            <i class="fas fa-home me-1"></i>Home
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Chat">
+                            <i class="fas fa-comments me-1"></i>Chat
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/About">
+                            <i class="fas fa-info-circle me-1"></i>About
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/Home/ContactUs">
+                            <i class="fas fa-envelope me-1"></i>Contact
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content page-transition" style="margin-top: 80px;">
+        @RenderBody()
+    </main>
+
+    <!-- Footer -->
+    @* <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h5><i class="fas fa-robot me-2"></i>AI Chat Bot</h5>
+                    <p>Experience the power of AI conversation with our advanced chatbot powered by Mistral 7B-Instruct model.</p>
+                    <div class="social-icons">
+                        <a href="#" class="social-icon" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="#" class="social-icon" title="LinkedIn">
+                            <i class="fab fa-linkedin"></i>
+                        </a>
+                        <a href="#" class="social-icon" title="Twitter">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="social-icon" title="Discord">
+                            <i class="fab fa-discord"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h5>Quick Links</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="/"><i class="fas fa-home me-2"></i>Home</a>
+                        <a href="/Chat"><i class="fas fa-comments me-2"></i>Start Chat</a>
+                        <a href="/About"><i class="fas fa-info-circle me-2"></i>About Us</a>
+                        <a href="/Contact"><i class="fas fa-envelope me-2"></i>Contact</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h5>Features</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#"><i class="fas fa-bolt me-2"></i>Fast Response</a>
+                        <a href="#"><i class="fas fa-shield-alt me-2"></i>Secure Chat</a>
+                        <a href="#"><i class="fas fa-mobile-alt me-2"></i>Mobile Friendly</a>
+                        <a href="#"><i class="fas fa-brain me-2"></i>AI Powered</a>
+                    </div>
+                </div>
+
+                <div class="footer-section">
+                    <h5>Support</h5>
+                    <div class="d-flex flex-column gap-2">
+                        <a href="#"><i class="fas fa-question-circle me-2"></i>FAQ</a>
+                        <a href="#"><i class="fas fa-life-ring me-2"></i>Help Center</a>
+                        <a href="#"><i class="fas fa-file-alt me-2"></i>Documentation</a>
+                        <a href="#"><i class="fas fa-bug me-2"></i>Report Issue</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="footer-bottom ">
+                <p class="text-white">&copy; 2025 AI Chat Bot. Made with <i class="fas fa-heart text-danger"></i> using ASP.NET Core MVC</p>
+            </div>
+        </div>
+    </footer> *@
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTopBtn" title="Go to top">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        $(document).ready(function() {
+            // Hide loading overlay
+            setTimeout(function() {
+                $('#loadingOverlay').addClass('hidden');
+            }, 1000);
+
+            // Scroll to top functionality
+            const scrollTopBtn = $('#scrollTopBtn');
+
+            $(window).scroll(function() {
+                if ($(this).scrollTop() > 300) {
+                    scrollTopBtn.addClass('visible');
+                } else {
+                    scrollTopBtn.removeClass('visible');
+                }
+            });
+
+            scrollTopBtn.click(function() {
+                $('html, body').animate({
+                    scrollTop: 0
+                }, 800);
+            });
+
+            // Active navigation link
+            const currentPath = window.location.pathname;
+            $('.navbar-nav .nav-link').each(function() {
+                if ($(this).attr('href') === currentPath) {
+                    $(this).addClass('active');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            $('a[href^="#"]').on('click', function(event) {
+                const target = $(this.getAttribute('href'));
+                if (target.length) {
+                    event.preventDefault();
+                    $('html, body').stop().animate({
+                        scrollTop: target.offset().top - 100
+                    }, 1000);
+                }
+            });
+
+            // Add hover effects to cards
+            $('.card').hover(
+                function() {
+                    $(this).addClass('shadow-lg');
+                },
+                function() {
+                    $(this).removeClass('shadow-lg');
+                }
+            );
+        });
+
+        // Page transition effect
+        window.addEventListener('beforeunload', function() {
+            document.body.style.opacity = '0';
+        });
+    </script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>
