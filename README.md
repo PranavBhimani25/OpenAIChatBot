@@ -1,0 +1,18 @@
+
+---
+COMPANY: CODTECH IT SOLUTIONS
+---
+NAME: Pranav Bhimani
+---
+
+INTERN ID: CT04DM1485
+---
+
+DONAIN: .Net 
+---
+
+DURATION: 4 WEEEKS
+---
+
+MENTOR: VAISHALI
+---
