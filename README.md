@@ -51,3 +51,10 @@ An intelligent, conversational chatbot web application built using ASP.NET Core 
 ```bash
 git clone https://github.com/yourusername/OpenAIChatBot.git
 cd OpenAIChatBot
+```
+
+
+![image alt](https://github.com/PranavBhimani25/OpenAIChatBot/blob/a3b188e49a2004f90b7ba43ed47eae84a011977f/OpenAIChatBot/wwwroot/1.png)
+![image alt](https://github.com/PranavBhimani25/OpenAIChatBot/blob/a3b188e49a2004f90b7ba43ed47eae84a011977f/OpenAIChatBot/wwwroot/2.png)
+![image alt](https://github.com/PranavBhimani25/OpenAIChatBot/blob/a3b188e49a2004f90b7ba43ed47eae84a011977f/OpenAIChatBot/wwwroot/3.png)
+![image alt](https://github.com/PranavBhimani25/OpenAIChatBot/blob/a3b188e49a2004f90b7ba43ed47eae84a011977f/OpenAIChatBot/wwwroot/4.png)
