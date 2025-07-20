@@ -1,22 +1,3 @@
-
----
-COMPANY: CODTECH IT SOLUTIONS
----
-NAME: Pranav Bhimani
----
-
-INTERN ID: CT04DM1485
----
-
-DONAIN: .Net 
----
-
-DURATION: 4 WEEEKS
----
-
-MENTOR: VAISHALI
----
-
 # OpenAIChatBot 🤖
 
 An intelligent, conversational chatbot web application built using ASP.NET Core MVC and integrated with OpenAI's language models (e.g., GPT-4 or Mistral via OpenRouter.ai). This project mimics the ChatGPT-like experience for users in a web interface.
